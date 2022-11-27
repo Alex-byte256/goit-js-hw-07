@@ -23,3 +23,13 @@ const galleryMarkUp = galleryItems
   .join("");
 
 galleryRef.innerHTML = galleryMarkUp;
+
+galleryRef.addEventListener("click", openModalGallery);
+
+function openModalGallery(e) {
+  e.preventDefault();
+  const instance = basicLightbox.create(
+    `<img src='${e.target.dataset.source}'/>`
+  );
+  instance.show();
+}
