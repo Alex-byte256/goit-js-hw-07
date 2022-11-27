@@ -31,5 +31,12 @@ function openModalGallery(e) {
   const instance = basicLightbox.create(
     `<img src='${e.target.dataset.source}'/>`
   );
-  instance.show();
+  instance.show(() => {
+    addEventListener("keydown", function onOpenModal(e) {
+      if (e.code === "Escape") {
+        instance.close();
+        this.removeEventListener("keydown", onOpenModal);
+      }
+    });
+  });
 }
